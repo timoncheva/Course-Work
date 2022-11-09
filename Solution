@@ -1,0 +1,45 @@
+import UIKit
+
+struct Station {
+    let station: String
+    let distance: Int
+    
+    init(station: String, distance: Int) {
+        self.station = station
+        self.distance = distance
+    }
+}
+
+let stationDistances: [Station] = [
+    Station(station: "Щелковская", distance: 0),
+    Station(station: "Первомайская", distance: 7),
+    Station(station: "Измайловская", distance: 11),
+    Station(station: "Партизанская", distance: 17),
+    Station(station: "Семеновская", distance: 27),
+    Station(station: "Электрозаводская", distance: 35),
+    Station(station: "Комсомольская", distance: 41),
+]
+
+
+func calculateDistance(_ startStationTitle: String, _ endStationTitle: String) -> Int? {
+    
+    guard let startStation = stationDistances.filter({$0.station == startStationTitle}).first else {
+        print("Start station not found")
+        return nil
+        
+    }
+    guard let endStation = stationDistances.filter({$0.station == endStationTitle}).first else {
+        print("End station not found")
+        return nil
+    }
+    
+    let result = endStation.distance - startStation.distance
+    
+    
+    return result
+
+}
+
+
+let distance = calculateDistance("Измайловская", "Семеновская")
+print("Distance: \(distance ?? 0)")
